@@ -16,7 +16,23 @@ export default function GamePage() {
           margin: "0 auto",
         }}
       >
-        <h1>🚀 PrimeSpace Game</h1>
+        <h1
+          style={{
+            fontSize: "42px",
+            marginBottom: "10px",
+          }}
+        >
+          🚀 PrimeSpace Game
+        </h1>
+
+        <p
+          style={{
+            color: "#94a3b8",
+            marginBottom: "20px",
+          }}
+        >
+          Cosmic Space Experience
+        </p>
 
         <RocketGame />
 
