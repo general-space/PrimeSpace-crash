@@ -9,9 +9,7 @@ export async function createUser(
     .upsert({
       telegram_id: telegramId,
       username,
-    })
-    .select()
-    .single();
+    });
 }
 
 export async function getUser(
@@ -21,7 +19,7 @@ export async function getUser(
     .from("users")
     .select("*")
     .eq("telegram_id", telegramId)
-    .single();
+    .maybeSingle();
 }
 
 export async function updateBalance(
@@ -30,9 +28,7 @@ export async function updateBalance(
 ) {
   return await supabase
     .from("users")
-    .update({
-      balance,
-    })
+    .update({ balance })
     .eq("telegram_id", telegramId);
 }
 
@@ -47,7 +43,7 @@ export async function addCoin(
   if (!data) return null;
 
   const newBalance =
-    data.balance + amount;
+    Number(data.balance) + amount;
 
   await updateBalance(
     telegramId,
@@ -67,8 +63,10 @@ export async function removeCoin(
 
   if (!data) return null;
 
-  const newBalance =
-    data.balance - amount;
+  const newBalance = Math.max(
+    0,
+    Number(data.balance) - amount
+  );
 
   await updateBalance(
     telegramId,
@@ -76,4 +74,19 @@ export async function removeCoin(
   );
 
   return newBalance;
+}
+
+export async function saveGameHistory(
+  payload: {
+    telegram_id: number;
+    username: string;
+    bet: number;
+    multiplier: number;
+    result: string;
+    profit: number;
+  }
+) {
+  return await supabase
+    .from("game_history")
+    .insert(payload);
 }
