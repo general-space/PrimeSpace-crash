@@ -16,6 +16,7 @@ import "./start";
 import "./commands";
 import "./addcoin";
 import "./removecoin";
+import "./stats";
 
 export async function startBot() {
   await bot.launch();
