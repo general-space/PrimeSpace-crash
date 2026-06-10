@@ -1,3 +1,5 @@
+import RocketGame from "../../components/RocketGame";
+
 export default function GamePage() {
   return (
     <main
@@ -10,27 +12,7 @@ export default function GamePage() {
     >
       <h1>🚀 PrimeSpace Game</h1>
 
-      <div
-        style={{
-          marginTop: "40px",
-          textAlign: "center",
-        }}
-      >
-        <h2>🚀</h2>
-
-        <h1>x1.00</h1>
-
-        <button
-          style={{
-            marginTop: "20px",
-            padding: "12px 24px",
-            borderRadius: "12px",
-            border: "none",
-          }}
-        >
-          START GAME
-        </button>
-      </div>
+      <RocketGame />
     </main>
   );
 }
