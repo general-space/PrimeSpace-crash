@@ -5,6 +5,16 @@ import { useState } from "react";
 export default function BetPanel() {
   const [bet, setBet] = useState(1000);
 
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const value = Number(e.target.value);
+
+    if (Number.isNaN(value)) return;
+
+    setBet(Math.max(0, value));
+  };
+
   return (
     <div
       style={{
@@ -14,14 +24,13 @@ export default function BetPanel() {
         marginTop: "20px",
       }}
     >
-      <h3>💰 Bet Amount</h3>
+      <h3>💰 Demo Amount</h3>
 
       <input
         type="number"
+        min="0"
         value={bet}
-        onChange={(e) =>
-          setBet(Number(e.target.value))
-        }
+        onChange={handleChange}
         style={{
           width: "100%",
           marginTop: "10px",
@@ -41,7 +50,7 @@ export default function BetPanel() {
           fontWeight: "bold",
         }}
       >
-        🚀 START GAME
+        🚀 START DEMO
       </button>
 
       <button
@@ -54,7 +63,7 @@ export default function BetPanel() {
           fontWeight: "bold",
         }}
       >
-        💸 CASH OUT
+        ⏹️ STOP DEMO
       </button>
     </div>
   );
