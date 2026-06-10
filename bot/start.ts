@@ -1,11 +1,18 @@
 import { bot } from "./index";
-import {
-  registerUser,
-} from "../lib/userService";
+import { registerUser } from "../lib/userService";
+import { isUserBanned } from "../lib/banService";
 
 bot.start(async (ctx) => {
-  const telegramId =
-    ctx.from.id;
+  const telegramId = ctx.from.id;
+
+  const banned =
+    await isUserBanned(telegramId);
+
+  if (banned) {
+    return ctx.reply(
+      "🚫 Akun Anda telah diblokir dari PrimeSpace."
+    );
+  }
 
   const username =
     ctx.from.username ||
@@ -23,6 +30,6 @@ bot.start(async (ctx) => {
 
 💰 Balance: 0 Coin
 
-Use /play to start.
+Gunakan /play untuk memulai.
 `);
 });
