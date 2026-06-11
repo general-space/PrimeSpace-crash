@@ -1,3 +1,6 @@
 export async function GET() {
   return Response.json({
-    status: "
+    status: "online",
+    app: "PrimeSpace Crash",
+  });
+}
