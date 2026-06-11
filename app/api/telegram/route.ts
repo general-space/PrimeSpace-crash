@@ -1,4 +1,4 @@
-import { bot } from "../../../../bot";
+import { bot } from "../../../../bot/index";
 
 export async function POST(
   request: Request
